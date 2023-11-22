@@ -26,6 +26,10 @@ public class MainController {
 
     @PostMapping("/users")
     void addUser(@RequestBody User user){
+        Optional<Usertype> usert=usertypeRepository.findById(user.getUsertype().getId());
+        if(usert.isPresent()){
+            user.setUsertype(usert.get());
+        }
         userRepository.save(user);
     }
 
@@ -58,7 +62,13 @@ public class MainController {
         else{
             Optional<Usertype> usertype=usertypeRepository.findById(id);
             List e=new ArrayList();
-            e.add(usertype.get());
+
+
+            if(usertype.isPresent()){
+                e.add(usertype.get());
+            }
+
+
             return e;
         }
 
@@ -81,6 +91,12 @@ public class MainController {
 
     @DeleteMapping("/types")
     void deleteType(@RequestParam("id") Integer id){
+            Iterable<User> users =userRepository.findAll();
+        users.forEach(user ->{
+            if((user.getUsertype()!=null)&&(user.getUsertype().getId()==id)){
+            user.setUsertype(null);
+        }});
+
             usertypeRepository.deleteById(id);
     }
 

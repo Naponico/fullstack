@@ -28,13 +28,13 @@
 
             <div class="form-group">
                 <label for="usertype">User type</label>
-                <select [(ngModel)]="user.usertype"
-                class="form-control" id="usertype" name="usertype"
-                required #usertype="ngModel">
-                    <option selected value="{{updateUsertype}}">
+                <select [(ngModel)]="secondusertype"
+                class="form-control" id="secondusertype" name="secondusertype"
+                required #usertype="ngModel" (change)="onSelected(usertype.value)">
+                    <option  value="{{updateUsertype}}" selected>
                         {{updateUsertype}}
                     </option>
-                    <option *ngFor="let usert of usertypes" value="{{usert.usertype}}">
+                    <option *ngFor="let usert of usertypes" value="{{usert.id}}">
                         {{usert.usertype}}
                     </option>
 

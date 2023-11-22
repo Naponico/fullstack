@@ -5,6 +5,8 @@ import { UserServiceService } from '../user-service.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
 import { routes } from '../app.routes';
+import { Usertype } from '../usertype';
+import { UsertypeServiceService } from '../usertype-service.service';
 
 
 @Component({
@@ -19,9 +21,12 @@ export class UserListComponent implements OnInit{
 
   sortedusers:User[];
 
-  constructor (private userService:UserServiceService,private router:Router){
+  usertypes:Usertype[];
+
+  constructor (private userService:UserServiceService,private router:Router,private usertypeService:UsertypeServiceService){
     this.users=[];
     this.sortedusers=[];
+    this.usertypes=[];
   }
 
   ngOnInit(): void {
@@ -31,6 +36,10 @@ export class UserListComponent implements OnInit{
     })
   }
 
+
+
+
+
   UserFormRedirect(){
     this.router.navigateByUrl("adduser");
   }
@@ -38,6 +47,10 @@ export class UserListComponent implements OnInit{
   deleteUser(id:String){
     this.userService.delete(id).subscribe(data =>{
         location.reload();      
+    })
+
+    this.usertypeService.findAll().subscribe(data =>{
+      this.usertypes=data;
     })
   }
 
@@ -137,12 +150,12 @@ export class UserListComponent implements OnInit{
     if (target.getAttribute("sorted") === "false") {
       toSort.sort((a: User, b: User) => {
         target.setAttribute("sorted", "true")
-        return String(a.usertype).localeCompare(b.usertype)
+        return String(a.usertype.usertype).localeCompare(b.usertype.usertype)
       });
     } else {
       toSort.sort((a: User, b: User) => {
         target.setAttribute("sorted", "false")
-        return String(b.usertype).localeCompare(a.usertype)
+        return String(b.usertype.usertype).localeCompare(a.usertype.usertype)
       });
     }
     return toSort;

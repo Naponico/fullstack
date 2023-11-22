@@ -12,9 +12,11 @@ public class User {
     private String name;
 
     private String firstname;
-
-    private String usertype;
     private String email;
+
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name="usertype_id")
+    private Usertype usertype;
 
     public int getId() {
         return id;
@@ -48,11 +50,11 @@ public class User {
         this.firstname = firstname;
     }
 
-    public String getUsertype() {
+    public Usertype getUsertype() {
         return usertype;
     }
 
-    public void setUsertype(String usertype) {
+    public void setUsertype(Usertype usertype) {
         this.usertype = usertype;
     }
 }

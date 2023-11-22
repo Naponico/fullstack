@@ -20,12 +20,13 @@ export class UserFormComponent {
   user:User;
   updateUsertype:String;
   usertypes:Usertype[];
-
+  secondusertype:string;
 
   constructor(private route:ActivatedRoute,private router:Router,private userService:UserServiceService,private usertypeService:UsertypeServiceService){
     this.user=new User();
     this.usertypes=[];
     this.updateUsertype="";
+    this.secondusertype="";
   }
 
 
@@ -39,16 +40,14 @@ export class UserFormComponent {
       this.userService.findById(params.get("id")).subscribe(data =>
         {
           this.user=data[0];
-          this.updateUsertype=this.user.usertype;
+          let search =this.user.usertype.id;
 
-          console.log(this.user);
+          this.usertypeService.findById(search).subscribe(data =>{
+            this.updateUsertype=data[0].usertype;
+          })
         }
         )
-
-
     }
-
-
 
     this.usertypeService.findAll().subscribe(data =>{
       this.usertypes=data;
@@ -56,7 +55,18 @@ export class UserFormComponent {
   }
 
   onSubmit(){
-    this.userService.save(this.user).subscribe(result => this.gotoUserList());
+    let usertype:Usertype=new Usertype();
+
+    this.usertypeService.findById(this.secondusertype).subscribe(data =>{
+      usertype=data[0];
+      this.user.usertype=usertype;
+      this.userService.save(this.user).subscribe(result => this.gotoUserList());
+    })
+    
+  }
+
+  onSelected(info:string){ 
+    this.secondusertype=info
   }
 
   gotoUserList(){

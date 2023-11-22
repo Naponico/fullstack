@@ -24,8 +24,15 @@ export class UsertypeServiceService {
     return this.http.delete<Usertype>(this.usertypesUrl+"?id="+id);
   }
 
- public findById(id:String | null):Observable<Usertype[]>{
-    return this.http.get<Usertype[]>(this.usertypesUrl+"?id="+id);
+ public findById(Usertype:string | null):Observable<Usertype[]>{
+  if(Usertype!=null){
+    let usertypeId:string=Usertype;
+    return this.http.get<Usertype[]>(this.usertypesUrl+"?id="+Usertype);
+  }
+  else{
+    return this.http.get<Usertype[]>(this.usertypesUrl+"?id="+0);
+  }
+    
   }
    
 }

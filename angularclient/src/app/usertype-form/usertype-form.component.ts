@@ -26,10 +26,12 @@ export class UsertypeFormComponent {
     const params=new URLSearchParams(search)
 
     if(params.get("update")==="true"){
-      this.usertypeService.findById(params.get("id")).subscribe(data =>{
-        this.userType=data[0];
-
-      })
+      if(params.has("id")){
+        this.usertypeService.findById(params.get("id")).subscribe(data =>{
+          this.userType=data[0];
+          
+        })
+      }
     }
 
 
