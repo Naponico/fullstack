@@ -40,11 +40,16 @@ export class UserFormComponent {
       this.userService.findById(params.get("id")).subscribe(data =>
         {
           this.user=data[0];
-          let search =this.user.usertype.id;
+          if(this.user.usertype!=null){
+            let search =this.user.usertype.id;
 
-          this.usertypeService.findById(search).subscribe(data =>{
-            this.updateUsertype=data[0].usertype;
-          })
+            this.usertypeService.findById(search).subscribe(data =>{
+              this.updateUsertype=data[0].usertype;
+            })
+          }else{
+            this.updateUsertype="";
+          }
+          
         }
         )
     }

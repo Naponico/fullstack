@@ -33,11 +33,22 @@ export class UserListComponent implements OnInit{
     this.userService.findAll().subscribe(data =>{
       this.users=data;
       this.sortedusers=this.users;
+      this.getUsertypeName()
     })
   }
 
 
+  getUsertypeName(){
+    let userscopy:User[]=this.users;
+    userscopy.forEach(user => {
+      if(user.usertype==null){
+        user.usertype=new Usertype();
+        user.usertype.usertype="NO TYPE";
+      }
+    });
+    this.users=userscopy;
 
+  }
 
 
   UserFormRedirect(){
