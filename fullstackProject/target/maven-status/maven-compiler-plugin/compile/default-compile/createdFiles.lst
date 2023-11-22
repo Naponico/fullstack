@@ -1,4 +1,6 @@
+com/example/fullstackApp/fullstackProject/Repository/UsertypeRepository.class
 com/example/fullstackApp/fullstackProject/entity/User.class
-com/example/fullstackApp/fullstackProject/controller/MainController.class
+com/example/fullstackApp/fullstackProject/entity/Usertype.class
 com/example/fullstackApp/fullstackProject/FullstackProjectApplication.class
+com/example/fullstackApp/fullstackProject/controller/MainController.class
 com/example/fullstackApp/fullstackProject/Repository/UserRepository.class

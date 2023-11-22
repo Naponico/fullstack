@@ -23,8 +23,8 @@ services:
   container_name: mysql
   image: mysql/mysql-server:5.7
   environment:
-   MYSQL_DATABASE: FullStackApp
-   MYSQL_ROOT_PASSWOD: ''
+   MYSQL_DATABASE: fullstack
+   MYSQL_ROOT_PASSWORD: 'fullstack'
    MYSQL_ROOT_HOST: '%'
   ports:
   - "3306:3306"

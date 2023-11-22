@@ -2,3 +2,5 @@
 /fullstackProject/src/main/java/com/example/fullstackApp/fullstackProject/controller/MainController.java
 /fullstackProject/src/main/java/com/example/fullstackApp/fullstackProject/entity/User.java
 /fullstackProject/src/main/java/com/example/fullstackApp/fullstackProject/FullstackProjectApplication.java
+/fullstackProject/src/main/java/com/example/fullstackApp/fullstackProject/Repository/UsertypeRepository.java
+/fullstackProject/src/main/java/com/example/fullstackApp/fullstackProject/entity/Usertype.java

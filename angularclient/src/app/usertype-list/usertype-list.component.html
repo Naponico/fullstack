@@ -1,0 +1,27 @@
+<button class="btn btn-info" (click)="TypeUserFormRedirect()">Add Type</button>
+<div class="card my-5">
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" sortable="id" (click)="sortColumn($event)">ID</th>
+                    <th scope="col" sortable="label" (click)="sortColumn($event)">Type User</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usertype of usertypes">
+                    <td>{{usertype.id}}</td>
+                    <td>{{usertype.usertype}}</td>
+                    <td>
+                        <ul class="list-inline">
+                            <button class="list-inline-item btn btn-danger" (click)="deleteUsertype(usertype.id)">Delete User Type</button>
+                            <button class="list-inline-item btn btn-success" (click)="updateUsertype(usertype.id)"> Update User Type</button>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
